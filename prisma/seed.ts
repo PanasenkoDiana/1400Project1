@@ -67,7 +67,7 @@ async function createOneUser(){
 
 // async function 
 
-createOneUser().then(() => {
+createOneProduct().then(() => {
     prisma.$disconnect()
 }).catch(err => {
     console.error(err);

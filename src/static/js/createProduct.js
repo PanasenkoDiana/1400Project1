@@ -4,7 +4,7 @@ const description = document.querySelector('#productDesc');
 const price = document.querySelector('#productPrice');
 
 button.addEventListener('click', function() {
-    fetch('',{
+    fetch('/product/create', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -12,7 +12,7 @@ button.addEventListener('click', function() {
         body: JSON.stringify({
             name: name.value,
             description: description.value,
-            price: price.value,
+            price: parseFloat(price.value),
         })
-    })
+    })    
 })

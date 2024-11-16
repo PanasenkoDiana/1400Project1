@@ -16,10 +16,14 @@ function renderCreateCategory(req:Request, res:Response) {
 }
 
 
-async function createCategory(req:Request, res:Response) {
-    const data = req.body
+async function createCategory(req: Request, res: Response) {
+    console.log("Request body:", req.body);
+    const data = req.body;
     const createdCategory = await categoryService.createCategory(data);
-    res.send('category created')
+    if (createdCategory.status === 'error') {
+        return res.status(400).send(createdCategory.message);
+    }
+    res.send('category created');
 }
 
 // async function createProduct(req:Request, res:Response) {

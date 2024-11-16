@@ -27,17 +27,18 @@ async function getProductById(req:Request, res:Response){
     }
 }
 
-async function createProduct(req:Request, res:Response){
-    const data = req.body
-    console.log(data)
-    
-    const result = await productService.createProduct(data);
-    if (result.status == 'error'){
-        res.send('error');
-    }
-    res.send('ok')
+async function createProduct(req: Request, res: Response) {
+    const data = req.body;
+    console.log('Данные из клиента:', data);
 
+    const result = await productService.createProduct(data);
+    if (result.status == 'error') {
+        console.log('Ошибка при создании продукта:', result.message);
+        return res.status(500).send('Ошибка при создании продукта');
+    }
+    res.send('Продукт успешно создан');
 }
+
 
 function renderCreateProduct(req:Request, res:Response) {
     res.render('createProduct')
